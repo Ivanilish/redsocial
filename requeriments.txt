@@ -26,4 +26,4 @@ pytz==2020.5
 mutagen==1.45.1
 django-celery-beat==2.2.1
 celery==5.1.2
-python-dateutil==2.8.1
+python-dateutil==2.8.1nuevo cambio para enlace
