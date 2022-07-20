@@ -3,6 +3,7 @@
 
     <!-- LEFT NAV -->
     <div class="flex items-center justify-between w-full md:w-max px-4 py-2">
+       
         <a href="#" class="mr-2 hidden md:inline-block">
             <img src="{% static 'img/logoleon.png' %}" alt="Facebook logo" class="w-24 sm:w-20 lg:w-10 h-auto">
         </a>
@@ -11,6 +12,21 @@
         </a>
 
         <div class="flex items-center justify-between space-x-1">
+
+            {% if not user.is_authenticated %}
+
+
+            <a href="{% url 'account_login' %}" class="inline-flex items-center justify-center p-1 rounded-full hover:bg-gray-200 dark:hover:bg-dark-third mx-1">
+                
+                <span class="mx-2 font-semibold dark:text-dark-txt">Login</span>
+            </a>
+
+            <a href="{% url 'account_signup' %}" class="inline-flex items-center justify-center p-1 rounded-full hover:text-white hover:bg-blue-600 dark:hover:bg-dark-third mx-1">
+                <span class="mx-2 font-semibold dark:text-dark-txt">Registrarce</span>
+            </a>
+        
+        
+         {% else %} 
 
             <a href="#" class="inline-flex md:hidden items-center justify-center p-1 rounded-full hover:bg-gray-200 dark:hover:bg-dark-third mx-1">
                 <i class='bx bx-coin text-yellow-400'></i>
@@ -28,6 +44,7 @@
             <div class="text-xl grid place-items-center md:hidden bg-gray-200 dark:bg-dark-third rounded-full w-10 h-10 cursor-pointer hover:bg-gray-300 dark:text-dark-txt" id="dark-mode-toggle-mb">
                 <i class='bx bxs-bell'></i>
             </div>
+            {% endif %}
         </div>
     </div>
     <!-- END LEFT NAV -->
@@ -117,6 +134,23 @@
 
     <!-- RIGHT NAV -->
     <ul class="hidden md:flex mx-4 items-center justify-center">
+
+        {% if not user.is_authenticated %}
+
+
+            <a href="{% url 'account_login' %}" class="inline-flex items-center justify-center p-1 rounded-full hover:bg-gray-200 dark:hover:bg-dark-third mx-1">
+                
+                <span class="mx-2 font-semibold dark:text-dark-txt">Login</span>
+            </a>
+
+            <a href="{% url 'account_signup' %}" class="inline-flex items-center justify-center p-1 rounded-full hover:text-white hover:bg-blue-600 dark:hover:bg-dark-third mx-1">
+                <span class="mx-2 font-semibold dark:text-dark-txt">Registrarce</span>
+            </a>
+        
+        
+         {% else %} 
+     
+
         <li class="h-full xl:flex">
             <a href="#" class="inline-flex items-center justify-center p-1 rounded-full hover:bg-gray-200 dark:hover:bg-dark-third mx-1">
                 <i class='bx bx-coin text-yellow-400'></i>
@@ -150,7 +184,7 @@
             </div>
 
         </li>
-        
+        {% endif %}
     </ul>
     <!-- END RIGHT NAV -->
 
