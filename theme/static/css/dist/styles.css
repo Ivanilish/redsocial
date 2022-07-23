@@ -1851,53 +1851,6 @@ select {
   color: rgba(129, 140, 248, var(--tw-text-opacity));
 }
 
-@media (prefers-color-scheme: dark) {
-  .dark\:border-dark-third {
-    --tw-border-opacity: 1;
-    border-color: rgba(58, 59, 60, var(--tw-border-opacity));
-  }
-
-  .dark\:bg-dark-second {
-    --tw-bg-opacity: 1;
-    background-color: rgba(36, 37, 38, var(--tw-bg-opacity));
-  }
-
-  .dark\:bg-dark-third {
-    --tw-bg-opacity: 1;
-    background-color: rgba(58, 59, 60, var(--tw-bg-opacity));
-  }
-
-  .dark\:bg-dark-main {
-    --tw-bg-opacity: 1;
-    background-color: rgba(24, 25, 26, var(--tw-bg-opacity));
-  }
-
-  .dark\:text-dark-txt {
-    --tw-text-opacity: 1;
-    color: rgba(184, 187, 191, var(--tw-text-opacity));
-  }
-
-  .dark\:text-gray-500 {
-    --tw-text-opacity: 1;
-    color: rgba(107, 114, 128, var(--tw-text-opacity));
-  }
-
-  .dark\:ring-dark-second {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgba(36, 37, 38, var(--tw-ring-opacity));
-  }
-
-  .dark\:hover\:bg-dark-third:hover {
-    --tw-bg-opacity: 1;
-    background-color: rgba(58, 59, 60, var(--tw-bg-opacity));
-  }
-
-  .dark\:focus\:ring-dark-second:focus {
-    --tw-ring-opacity: 1;
-    --tw-ring-color: rgba(36, 37, 38, var(--tw-ring-opacity));
-  }
-}
-
 @media (min-width: 640px) {
   .sm\:col-span-2 {
     grid-column: span 2 / span 2;
