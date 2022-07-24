@@ -36,14 +36,14 @@
 
                     {% if user.is_authenticated and user != profile.user %}
                         {% if is_following %}
-                        <form method="POST" action="#" >
+                        <form method="POST" action="{% url 'users:remove-follower' profile.pk %}" >
                             {% csrf_token %}
                             <button type="submit" class="float-right inline-flex justify-center px-4 py-2 border dark:bg-dark-main dark:border-dark-third dark:hover:bg-dark-third dark:text-dark-txt border-blue-500 shadow-sm text-md font-bold rounded-full text-blue-500 bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-dark-second focus:ring-blue-500">
                             Unfollow
                             </button>
                         </form>
                         {% else %}
-                        <form method="POST" action="#" >
+                        <form method="POST" action="{% url 'users:add-follower' profile.pk %}" >
                             {% csrf_token %}
                             <button type="submit" class="float-right inline-flex justify-center px-4 py-2 border dark:bg-dark-main dark:border-dark-third dark:hover:bg-dark-third dark:text-dark-txt border-blue-500 shadow-sm text-md font-bold rounded-full text-blue-500 dark:bg-dark-second bg-white hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 dark:focus:ring-dark-second focus:ring-blue-500">
                             Follow
@@ -66,7 +66,7 @@
 
                 <div class=" sm:block  mt-6 min-w-0 flex-1">
                     <h1 class="text-2xl font-bold dark:text-dark-txt text-gray-900 truncate">
-                    {{profile.user.username}} 
+                    {{profile.user.first_name}} 
                         {% if profile.verified == "verified" %}
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 inline-block text-blue-500" viewBox="0 0 20 20" fill="currentColor">
                                 <path fill-rule="evenodd" d="M6.267 3.455a3.066 3.066 0 001.745-.723 3.066 3.066 0 013.976 0 3.066 3.066 0 001.745.723 3.066 3.066 0 012.812 2.812c.051.643.304 1.254.723 1.745a3.066 3.066 0 010 3.976 3.066 3.066 0 00-.723 1.745 3.066 3.066 0 01-2.812 2.812 3.066 3.066 0 00-1.745.723 3.066 3.066 0 01-3.976 0 3.066 3.066 0 00-1.745-.723 3.066 3.066 0 01-2.812-2.812 3.066 3.066 0 00-.723-1.745 3.066 3.066 0 010-3.976 3.066 3.066 0 00.723-1.745 3.066 3.066 0 012.812-2.812zm7.44 5.252a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
@@ -146,30 +146,11 @@
                 <button @click="openTab = 1"
                         :class="openTab === 1 ? activeClasses : inactiveClasses"
                  class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                My Account
+                Mi Cuenta
                 <span aria-hidden="true" :class="openTab === 1 ? underlineActive : underlineInactive"></span>
                 </button>
 
-                <button @click="openTab = 2"
-                        :class="openTab === 2 ? activeClasses : inactiveClasses"
-                 class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                Company
-                <span aria-hidden="true" :class="openTab === 2 ? underlineActive : underlineInactive"></span>
-                </button>
-
-                <button @click="openTab = 3"
-                        :class="openTab === 3 ? activeClasses : inactiveClasses"
-                class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                Team Members
-                <span aria-hidden="true" :class="openTab === 3 ? underlineActive : underlineInactive"></span>
-                </button>
-
-                <button @click="openTab = 4"
-                        :class="openTab === 4 ? activeClasses : inactiveClasses"
-                class="border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 whitespace-nowrap py-4 px-1 border-b-2 font-medium text-sm">
-                Billing
-                <span aria-hidden="true" :class="openTab === 4 ? underlineActive : underlineInactive"></span>
-                </button>
+                
             </nav>
             </div>
         </div>
@@ -184,20 +165,13 @@
     <dl class="sm:divide-y sm:divide-gray-200">
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
         <dt class="text-sm font-medium text-gray-500">
-          Full name
+          Nombre Completo 
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
           {{profile.user.first_name}} {{profile.user.last_name}}
         </dd>
       </div>
-      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-        <dt class="text-sm font-medium text-gray-500">
-          Application for
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          Backend Developer
-        </dd>
-      </div>
+      
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
         <dt class="text-sm font-medium text-gray-500">
           Email address
@@ -206,20 +180,13 @@
           {{profile.user.email}}
         </dd>
       </div>
+      
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
         <dt class="text-sm font-medium text-gray-500">
-          Salary expectation
+          Acerca de mi
         </dt>
         <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          $120,000
-        </dd>
-      </div>
-      <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
-        <dt class="text-sm font-medium text-gray-500">
-          About
-        </dt>
-        <dd class="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-          Fugiat ipsum ipsum deserunt culpa aute sint do nostrud anim incididunt cillum culpa consequat. Excepteur qui ipsum aliquip consequat sint. Sit id mollit nulla mollit nostrud in ea officia proident. Irure nostrud pariatur mollit ad adipisicing reprehenderit deserunt qui eu.
+          {{profile.bio}}
         </dd>
       </div>
       <div class="py-4 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4">
@@ -235,12 +202,12 @@
                   <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
                 </svg>
                 <span class="ml-2 flex-1 w-0 truncate">
-                  resume_back_end_developer.pdf
+                  Si quieres saber mas
                 </span>
               </div>
               <div class="ml-4 flex-shrink-0">
-                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-                  Download
+                <a href="https://www.youtube.com/watch?v=mCdA4bJAGGk" class="font-medium text-indigo-600 hover:text-indigo-500">
+                  ver
                 </a>
               </div>
             </li>
@@ -251,12 +218,12 @@
                   <path fill-rule="evenodd" d="M8 4a3 3 0 00-3 3v4a5 5 0 0010 0V7a1 1 0 112 0v4a7 7 0 11-14 0V7a5 5 0 0110 0v4a3 3 0 11-6 0V7a1 1 0 012 0v4a1 1 0 102 0V7a3 3 0 00-3-3z" clip-rule="evenodd" />
                 </svg>
                 <span class="ml-2 flex-1 w-0 truncate">
-                  coverletter_back_end_developer.pdf
+                  si queires saber aun mas 
                 </span>
               </div>
               <div class="ml-4 flex-shrink-0">
-                <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">
-                  Download
+                <a href="https://www.youtube.com/watch?v=fVex-ORo9AU" class="font-medium text-indigo-600 hover:text-indigo-500">
+                  ver mas 
                 </a>
               </div>
             </li>
@@ -270,7 +237,7 @@
         </div>
 
         <div x-show="openTab === 2">
-        Tes2
+        
         </div>
 
         <div x-show="openTab === 3">
@@ -289,12 +256,5 @@
 
 </main>
 
+
 {% endblock content %}
-
-
-
-
-
-
-
-
