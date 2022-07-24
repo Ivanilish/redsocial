@@ -1,7 +1,4 @@
-{% extends "base.html" %}
-{% block navbar %}
-{% include 'components/navbar.html' %}
-{% endblock  %}
+{% extends "account/base.html" %}
 
 {% load i18n %}
 {% load account %}
@@ -20,7 +17,7 @@
 
 <form method="post" action="{% url 'account_confirm_email' confirmation.key %}">
 {% csrf_token %}
-    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">{% trans 'Confirm' %}</button>
+    <button type="submit">{% trans 'Confirm' %}</button>
 </form>
 
 {% else %}
